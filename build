@@ -1,9 +1,8 @@
-#!/bin/bash
+ #!/bin/bash
 cd /tmp/rom # Depends on where source got synced
 
 # Normal build steps
 . build/envsetup.sh
-lunch aosp_mido-user
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
@@ -15,7 +14,7 @@ ccache -z # Clear old stats, so monitor script will provide real ccache statisti
 #make api-stubs-docs || echo no problem, we need ccache
 #make system-api-stubs-docs || echo no problem we need ccache
 #make test-api-stubs-docs || echo no problem, we need ccache
-#make aex -j10 & # dont remove that '&'
+#brunch RMX1971 & # dont remove that '&'
 #sleep 85m
 #kill %1
 #ccache -s
@@ -34,13 +33,13 @@ up(){
 #}
 
 tg(){
-	bot_api=1692865707:AAHvKZogI5sUGtqjd2sZvNl8tib0Q_xcYkY # Your tg bot api, dont use my one haha, it's better to encrypt bot api too.
+	bot_api=ENCRYPTED[da09781be00619bd8d595ffcba492d32840f9675f6140e4333b9719ff0fd63c99c9045b260272782118ff8ffa1af59c4] # Your tg bot api, dont use my one haha, it's better to encrypt bot api too.
 	your_telegram_id=$1 # No need to touch 
 	msg=$2 # No need to touch
 	curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" --data "text=$msg&chat_id=${your_telegram_id}"
 }
 
-id=571213272 # Your telegram id
+id=1063318130 # Your telegram id
 
 # Upload rom zip file if succeed to build! Send notification to tg! And send shell to tg if build fails!
 
@@ -49,7 +48,7 @@ make api-stubs-docs || echo no problem
 make system-api-stubs-docs || echo no problem
 make test-api-stubs-docs || echo no problem
 
-make aex -j10 \
+brunch RMX1971 \
 	&& send_zip=$(up out/target/product/mido/*zip) && tg $id "Build Succeed!
 $send_zip" \
 	|| tmate -S /tmp/tmate.sock new-session -d && tmate -S /tmp/tmate.sock wait tmate-ready && send_shell=$(tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}') && tg $id "Build Failed" && tg $id "$send_shell" && ccache -s && sleep 2h
