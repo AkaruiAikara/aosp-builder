@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 cd /tmp/rom # Depends on where source got synced
 
 # Normal build steps
