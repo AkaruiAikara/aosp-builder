@@ -18,6 +18,7 @@ git clone https://gitlab.com/bablusss/vendor_realme_RMX1971 -b eleven vendor/rea
 git clone https://gitlab.com/bablusss/vendor_realme_sdm710-common -b eleven vendor/realme/sdm710-common
 sed -i '12d' hardware/qcom-caf/sdm845/display/Android.mk
 cd device/realme/RMX1971 && mv aosp_RMX1971.mk lineage_RMX1971.mk
+sudo apt-get install wget grep
 grep -rl aosp . | xargs sed -i 's/aosp/lineage/g'
 cd overlay/frameworks/base/core/res/res/values && rm config.xml && wget http://kontena.aikara.me/0:/config.xml
 cd ../../../../../../../../../..
