@@ -11,14 +11,10 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 
 # Clone local manifest! So that no need to manually git clone repos or change hals, you can use normal git clone or rm and re clone, they will cost little more time, and you may get timeout! Let's make it quit and depth=1 too.
 #git clone https://github.com/Apon77Lab/android_.repo_local_manifests.git --depth 1 -b aex .repo/local_manifests
-git clone https://github.com/KharaMe-devices/android_device_realme_RMX1971 -b eleven device/realme/RMX1971
+git clone https://github.com/AkaruiAikara/android_device_realme_RMX1971 -b lineage-18.1 device/realme/RMX1971
 git clone https://github.com/KharaMe-devices/android_device_realme_sdm710-common -b eleven device/realme/sdm710-common
 git clone https://github.com/KharaMe-devices/android_kernel_realme_sdm710 -b eleven kernel/realme/RMX1971
+git clone https://github.com/KharaMe-devices/android_device_realme_RMX1971-kernel -b eleven/nao device/realme/RMX1971-kernel
 git clone https://gitlab.com/bablusss/vendor_realme_RMX1971 -b eleven vendor/realme/RMX1971
 git clone https://gitlab.com/bablusss/vendor_realme_sdm710-common -b eleven vendor/realme/sdm710-common
 cd hardware/qcom-caf/sdm845/media && sed -i '12d' Android.mk && git diff . && cd ../../../..
-cd device/realme/RMX1971 && mv aosp_RMX1971.mk lineage_RMX1971.mk
-sudo apt-get install wget grep -y
-grep -rl aosp . | xargs sed -i 's/aosp/lineage/g'
-cd overlay/frameworks/base/core/res/res/values && rm config.xml && wget http://kontena.aikara.me/0:/config.xml
-cd ../../../../../../../../../..
